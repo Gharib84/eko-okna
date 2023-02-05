@@ -20,9 +20,7 @@
                     @endif
 
                     @can('JestAdmin', $user)
-                        <p class="text-white">
-                            welocome admin
-                        </p>
+                        <x-admin-component></x-admin-component>
                     @elsecan('JestUzytkownik', $user)
                         <p class="text-white">
                             witamy cie
