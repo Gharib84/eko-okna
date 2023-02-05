@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\MagazynController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::get('Tworzenie-użytkownika', [RegisteredUserController::class, 'create']
 ->name('Tworzenie-użytkownika');
 
 Route::post('Tworzenie-użytkownika', [RegisteredUserController::class, 'store']);
+
+# Magazyny 
+Route::resource('magazyny', MagazynController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
