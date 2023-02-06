@@ -20,9 +20,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('form', [[RegisteredUserController::class, 'create']])->name('form');
+
 Route::get('Tworzenie-użytkownika', [RegisteredUserController::class, 'create'])
 ->name('Tworzenie-użytkownika');
-
 Route::post('Tworzenie-użytkownika', [RegisteredUserController::class, 'store']);
 
 # Magazyny 

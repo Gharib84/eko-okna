@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('magazyns', function (Blueprint $table) {
             $table->id('magazyn_id');
             $table->string('magazyn_nazwa');
-            $table->uns;
             $table->timestamps();
         });
     }
