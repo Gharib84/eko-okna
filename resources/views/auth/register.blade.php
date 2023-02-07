@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('Tworzenie-użytkownika') }}">
+    <form method="POST" action="{{ route('rejester') }}">
         @csrf
 
         <!-- Name -->
@@ -17,7 +17,7 @@
                 required />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
+        <x-input-label for="role" :value="__('Role')" />
         <select name="role" id="role" class="block mt-1 w-full bg-slate-700 text-white">
             <option value="admin" {{ (old('role') === 'admin' || !old('role')) ? 'selected' : '' }}>admin</option>
             <option value="uzytkownik" {{ old('role') === 'uzytkownik' ? 'selected' : '' }}>uzytkownik</option>

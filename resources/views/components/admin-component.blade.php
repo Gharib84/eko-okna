@@ -19,7 +19,7 @@
     @endif
 
     <!--To Jest Admin UI-->
-    <a href="{{ route('Tworzenie-użytkownika') }}" class="underline text-yellow-300">Tworzenie użytkownika</a>
+    <a href="{{ route('rejester') }}" class="underline text-yellow-300">Tworzenie użytkownika</a>
 
     <a href="{{ route('magazyny.create') }}" class="underline text-blue-300">Tworzenie Magazyny</a>
 </div>

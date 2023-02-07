@@ -20,11 +20,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('form', [[RegisteredUserController::class, 'create']])->name('form');
 
-Route::get('Tworzenie-użytkownika', [RegisteredUserController::class, 'create'])
-->name('Tworzenie-użytkownika');
-Route::post('Tworzenie-użytkownika', [RegisteredUserController::class, 'store']);
+Route::get('rejester', [RegisteredUserController::class, 'create'])
+->name('rejester');
+Route::post('rejester', [RegisteredUserController::class, 'store']);
 
 # Magazyny 
 Route::resource('magazyny', MagazynController::class);
