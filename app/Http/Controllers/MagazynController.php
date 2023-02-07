@@ -3,18 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Magazyn;
 
 class MagazynController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +28,19 @@ class MagazynController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //stworzenie nasze magazyn 
+
+        $request->validate([
+            'magazyn_nazwa' => ['required', 'string', 'unique:magazyns,magazyn_nazwa']
+        ]);
+
+        $magazyn = new Magazyn();
+        $magazyn->magazyn_nazwa = $request->get('magazyn_nazwa');
+        $magazyn->save();
+        session()->flash('brawo', 'magazyn został pomyślnie utworzony');
+        return redirect()->intended('/dashboard');
+
+
     }
 
     /**

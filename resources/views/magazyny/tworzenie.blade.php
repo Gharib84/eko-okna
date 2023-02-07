@@ -13,7 +13,7 @@
                     <div class="flex items-center justify-center p-12">
                        
                         <div class="mx-auto w-full">
-                            <form action="" method="post">
+                            <form action="{{route('magazyny.store')}}" method="post">
                                 @csrf
                                 <h1 class="mb-5 font-bold text-lg text-left text-white">
                                   
@@ -36,7 +36,7 @@
                                         Nazwa Magazyny
                                     </label>
                                     <input type="text" name="magazyn_nazwa" id="magazyn_nazwa"
-                                        class="w-full rounded-md border border-[#ade70c] py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
+                                        class="w-full rounded-md border border-[#ade70c] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
                                 </div>
 
                                 <div>
