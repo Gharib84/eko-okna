@@ -37,6 +37,7 @@ class MagazynController extends Controller
         $magazyn = new Magazyn();
         $magazyn->magazyn_nazwa = $request->get('magazyn_nazwa');
         $magazyn->save();
+        session()->put('magazyn_id', $magazyn->magazyn_id);
         session()->flash('brawo', 'magazyn został pomyślnie utworzony');
         return redirect()->intended('/dashboard');
 

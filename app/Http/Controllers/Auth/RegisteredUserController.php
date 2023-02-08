@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use App\Models\Magazyn;
 
 
 
@@ -23,7 +24,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $magazyns = Magazyn::all();
+        return view('auth.register')->with('magazyns', $magazyns);
     }
 
     /**
@@ -40,13 +42,20 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-       
+        $magazyns = Magazyn::all();
+        $magazyn = new Magazyn();
+           
+        if (!$magazyns->count()) {
+            return redirect()->route('magazyny.create')->withErrors(['message' => 'Najpierw utwórz Magazyn.']);
+        }
 
-            $user = User::create([
+
+        $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'role'=> $request->role,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'magazyn_id' => session()->get('magazyn_id')
             ]);
 
 

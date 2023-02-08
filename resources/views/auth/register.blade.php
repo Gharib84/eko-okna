@@ -17,13 +17,22 @@
                 required />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-        <x-input-label for="role" :value="__('Role')" />
+        <x-input-label for="role" :value="__('Role')" class="mt-3 " />
         <select name="role" id="role" class="block mt-1 w-full bg-slate-700 text-white">
             <option value="admin" {{ (old('role') === 'admin' || !old('role')) ? 'selected' : '' }}>admin</option>
             <option value="uzytkownik" {{ old('role') === 'uzytkownik' ? 'selected' : '' }}>uzytkownik</option>
         </select>
         
-
+        <x-input-label for="Magazyn" :value="__('Nazwa Magazyny')" class="mt-5"/>
+        
+           <select name="magazyn" id="magazyn" class="block mt-1 w-full bg-slate-700 text-white">
+                @foreach ($magazyns as $magazyn)
+                <option  class="white" value="{{$magazyn->magazyn_id}}">{{$magazyn->magazyn_nazwa}}</option>
+                    
+                @endforeach
+           </select>
+           
+        
 
         <!-- Password -->
         <div class="mt-4">
