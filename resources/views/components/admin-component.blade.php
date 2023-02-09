@@ -22,4 +22,6 @@
     <a href="{{ route('rejester') }}" class="underline text-yellow-300">Tworzenie użytkownika</a>
 
     <a href="{{ route('magazyny.create') }}" class="underline text-blue-300 block mt-2">Tworzenie Magazyny</a>
+
+    <a href="{{ route('artykuł.create') }}" class="underline text-blue-300 block mt-2">Tworzenie artykułu</a>
 </div>
