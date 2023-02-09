@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
+        'magazyn_id'
         
         
     ];
@@ -48,9 +49,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $attributes = [
+   /* protected $attributes = [
         'magazyn_id' => 1,
-    ];
+    ];*/
 
     /**
      * Get the user that owns the User

@@ -43,24 +43,26 @@ class RegisteredUserController extends Controller
         ]);
 
         $magazyns = Magazyn::all();
-        $magazyn = new Magazyn();
            
         if (!$magazyns->count()) {
             return redirect()->route('magazyny.create')->withErrors(['message' => 'Najpierw utwórz Magazyn.']);
         }
 
+        $selectedOptionValue = intval($request->get('magazyn'));
+        //dd($selectedOptionValue);
 
         $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'role'=> $request->role,
                 'password' => Hash::make($request->password),
-                'magazyn_id' => session()->get('magazyn_id')
+                'magazyn_id' => $selectedOptionValue ,
+                
             ]);
 
-
+          
             
-          event(new Registered($user));
+        event(new Registered($user));
         
 
 
