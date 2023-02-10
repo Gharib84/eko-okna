@@ -24,4 +24,6 @@
     <a href="{{ route('magazyny.create') }}" class="underline text-blue-300 block mt-2">Tworzenie Magazyny</a>
 
     <a href="{{ route('artykuł.create') }}" class="underline text-blue-300 block mt-2">Tworzenie artykułu</a>
+
+    <a href="{{route('artykuł.index')}}">list</a>
 </div>
