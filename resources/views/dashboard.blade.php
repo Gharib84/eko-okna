@@ -25,7 +25,7 @@
                         <p class="text-white">
                             witamy cie
                         </p>
-                        <a href="{{route('artykuł.index')}}">list</a>
+                        <a href="{{route('Przyjęcieartykułu.create')}}">list</a>
 
                           
 

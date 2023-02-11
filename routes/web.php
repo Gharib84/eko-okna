@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MagazynController;
 use App\Http\Controllers\ArtykułController;
+use App\Http\Controllers\PrzyjęcieartykułuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,8 @@ Route::post('rejester', [RegisteredUserController::class, 'store']);
 Route::resource('magazyny', MagazynController::class);
 
 #artykuł
-Route::resource('artykuł',ArtykułController::class);
-
+Route::resource('artykuł',ArtykułController::class)->middleware(['auth', 'verified']);
+Route::resource('Przyjęcieartykułu', PrzyjęcieartykułuController::class)->middleware(['auth', 'verified']);
 #admin panel
 Route::get('/dashboard', function () {
     return view('dashboard');

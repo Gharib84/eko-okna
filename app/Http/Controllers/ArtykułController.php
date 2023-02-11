@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\artykuł;
+use Illuminate\View\View;
+use App\Http\Controllers\PrzyjęcieartykułuController;
 class ArtykułController extends Controller
 {
 
@@ -18,14 +20,13 @@ class ArtykułController extends Controller
      * @return View 
      */
 
-     public function index()
+     public function index(Request $request): View
 {
     if ($this->authorize('viewAny',artykuł::class ) === 'uzytkownik') {
+
         $artykuły = artykuł::all();
-        return view('artykuł.artykułList', [
-            'artykuły' => $artykuły
-        ]);
-    
+        return redirect()->action('PrzyjęcieartykułuController@create', ['artykuły' => $artykuły]);
+        
     }
 
     if ($this->authorize('viewAny',artykuł::class )) {
