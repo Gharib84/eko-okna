@@ -19,16 +19,23 @@ class ArtykułController extends Controller
      */
 
      public function index()
-     {
-         if ($this->authorize('viewAny',artykuł::class )) {
-            # code...
-            $artykuły = artykuł::all();
-            return view('artykuł.artykułList', [
-                'artykuły' => $artykuły
-            ]);
-        }
-        
-     }
+{
+    if ($this->authorize('viewAny',artykuł::class ) === 'uzytkownik') {
+        $artykuły = artykuł::all();
+        return view('artykuł.artykułList', [
+            'artykuły' => $artykuły
+        ]);
+    
+    }
+
+    if ($this->authorize('viewAny',artykuł::class )) {
+        $artykuły = artykuł::all();
+        return view('artykuł.artykułList', [
+            'artykuły' => $artykuły
+        ]);
+    }
+}
+
     /**
      *
      * Show the form for creating a new resource.

@@ -25,8 +25,15 @@
                         <p class="text-white">
                             witamy cie
                         </p>
-                    @endcan
+                        <a href="{{route('artykuł.index')}}">list</a>
 
+                          
+
+                      
+
+
+                    @endcan
+                        
                 </div>
             </div>
         </div>

@@ -25,5 +25,5 @@
 
     <a href="{{ route('artykuł.create') }}" class="underline text-blue-300 block mt-2">Tworzenie artykułu</a>
 
-    <a href="{{route('artykuł.index')}}">list</a>
+    <a href="{{route('artykuł.index')}}" class="underline block mt-2">artykuły List</a>
 </div>
