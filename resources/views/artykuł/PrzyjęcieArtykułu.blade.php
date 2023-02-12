@@ -13,7 +13,7 @@
                     <div class="flex items-center justify-center p-12">
                        
                         <div class="mx-auto w-full">
-                            <form action="" method="post">
+                            <form action="{{route('Przyjęcieartykułu.store')}}" method="post">
                                 @csrf
                                 <h1 class="mb-5 font-bold text-lg text-left text-white">
                                   
@@ -31,12 +31,73 @@
                                     </div>
                                 @endif
                                 <div class="mb-5">
-                                    <label for="magagyn_nazwa"
+                                    <label for="nazwa_artykuł"
                                         class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
-                                        Nazwa Magazyny
+                                        Nazwa Artykuł
                                     </label>
-                                    <input type="text" name="magazyn_nazwa" id="magazyn_nazwa"
+                                    <select name="nazwa_artykuł" id="magazyn" class="block mt-1 w-full bg-slate-700 text-white">
+                                        <option selected>Wybierz nazwę</option>
+                                        @foreach ($artykuły as $artykuł)
+                                            <option class="white" value="{{ $artykuł->id }}">{{ $artykuł->nazwa }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="Ilość_przyjęta"
+                                        class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
+                                        Ilość Przyjęta
+                                    </label>
+                                    <input type="number" min="1" name="Ilość_przyjęta" id="Ilość_przyjęta"
                                         class="w-full rounded-md border border-[#abaab6] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="Jednostka_miary"
+                                        class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
+                                        Jednostka Miary
+                                    </label>
+                                    <select name="Jednostka_miary" id="Jednostka_miary" class="block mt-1 w-full bg-slate-700 text-white">
+                                        <option selected>Wybierz jednostkę miary</option>
+                                        @foreach ($artykuły as $artykuł)
+                                            <option class="white" value="{{ $artykuł->id }}"
+                                                @if (old('nazwa') == $artykuł->id )
+                                                selected
+                                                @endif
+                                                >{{ $artykuł->Jednostka_miary }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="vat"
+                                        class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
+                                        Vat
+                                    </label>
+                                    <input type="text"  name="vat" id="vat"
+                                        class="w-full rounded-md border border-[#abaab6] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="Cena_jednostkowa"
+                                        class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
+                                        Cena Jednostkowa'
+                                    </label>
+                                    <input type="text"  name="Cena_jednostkowa" id="Cena_jednostkowa'" 
+                                        class="w-full rounded-md border border-[#abaab6] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
+                                </div>
+
+                                <div class="mb-5">
+                                    <label for="file"
+                                        class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
+                                        Wybierz Plik'
+                                    </label>
+                                    <input type="file"  name="file" id="file"
+                                        class="w-full rounded-md border 
+                                        border-[#abaab6] py-3 px-6 text-base font-medium text-[#83c41c] outline-none 
+                                        focus:border-[#6A64F1] focus:shadow-md bg-slate-800" 
+                                        
+                                        />
                                 </div>
 
                                 <div>
@@ -51,7 +112,4 @@
                 </div>
             </div>
         </div>
-
-
-
 </x-app-layout>

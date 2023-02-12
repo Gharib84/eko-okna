@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\artykuł;
 use App\Http\Controllers\ArtykułController;
+use APP\Models\PrzyjęcieArtykuł;
 class PrzyjęcieartykułuController extends Controller
 {
     /**
@@ -22,12 +23,15 @@ class PrzyjęcieartykułuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
         $artykuły = artykuł::all();
         
-        return view('artykuł.PrzyjęcieArtykułu')->with('artykuły', $artykuły);
+        return view('artykuł.PrzyjęcieArtykułu', [
+            
+            'artykuły' => $artykuły,
+        ]);
         
     }
 
@@ -39,51 +43,47 @@ class PrzyjęcieartykułuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //code
+        /**
+         * nazwa_artykuł
+         * Ilość_przyjęta
+         * Jednostka_miary
+         * vat
+         * Cena_jednostkowa
+         * file
+         * total
+         */
+
+        $artykuły = Artykuł::all();
+
+        $request->validate([
+            'nazwa_artykuł' => ['required', 'string'],
+            'Ilość_przyjęta' => ['required', 'numeric'],
+            'Jednostka_miary' => ['required', 'in:'.implode(',', $artykuły->pluck('jednostka_miary')->toArray())],
+            'vat' => ['required'],
+            'Cena_jednostkowa' => ['required', 'numeric'],
+            'file' => ['required', 'file'],
+
+
+
+        ]);
+
+        #stworzyc tutaj
+
+        PrzyjęcieArtykuł::create([
+            'nazwa_artykuł' => $request->get('nazwa_artykuł'),
+            'Ilość_przyjęta' => $request->get('Ilość_przyjęta'),
+            'Jednostka_miary' => $request->get('Jednostka_miary'),
+            'vat' => $request->get('vat'),
+            'Cena_jednostkowa' => $request->get('Cena_jednostkowa'),
+            'file' => $request->get('Cena_jednostkowa')
+
+        ]);
+
+
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
 }

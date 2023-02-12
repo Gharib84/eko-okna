@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nazwa_artykuł');
             $table->integer('Ilość_przyjęta');
-            $table->string('Jednostka miary', 20);
+            $table->string('Jednostka_miary', 20);
             $table->decimal('vat', 8, 2);
             $table->decimal('Cena_jednostkowa');
             $table->string('file', 255)->nullable();

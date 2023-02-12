@@ -20,12 +20,15 @@ class ArtykułController extends Controller
      * @return View 
      */
 
-     public function index(Request $request): View
+     public function index(): View
 {
     if ($this->authorize('viewAny',artykuł::class ) === 'uzytkownik') {
 
         $artykuły = artykuł::all();
-        return redirect()->action('PrzyjęcieartykułuController@create', ['artykuły' => $artykuły]);
+        return redirect()->action('PrzyjęcieartykułuController@create', [
+            'request' => $request,
+            'artykuły' => $artykuły
+        ]);
         
     }
 
