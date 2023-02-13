@@ -13,7 +13,7 @@
                     <div class="flex items-center justify-center p-12">
                        
                         <div class="mx-auto w-full">
-                            <form action="{{route('Przyjęcieartykułu.store')}}" method="post">
+                            <form action="{{route('Przyjęcieartykułu.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <h1 class="mb-5 font-bold text-lg text-left text-white">
                                   
@@ -38,7 +38,7 @@
                                     <select name="nazwa_artykuł" id="magazyn" class="block mt-1 w-full bg-slate-700 text-white">
                                         <option selected>Wybierz nazwę</option>
                                         @foreach ($artykuły as $artykuł)
-                                            <option class="white" value="{{ $artykuł->id }}">{{ $artykuł->nazwa }}</option>
+                                            <option class="white" value="{{ $artykuł->nazwa}}">{{ $artykuł->nazwa }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -60,11 +60,7 @@
                                     <select name="Jednostka_miary" id="Jednostka_miary" class="block mt-1 w-full bg-slate-700 text-white">
                                         <option selected>Wybierz jednostkę miary</option>
                                         @foreach ($artykuły as $artykuł)
-                                            <option class="white" value="{{ $artykuł->id }}"
-                                                @if (old('nazwa') == $artykuł->id )
-                                                selected
-                                                @endif
-                                                >{{ $artykuł->Jednostka_miary }}</option>
+                                            <option class="white" value="{{$artykuł->Jednostka_miary}}">{{ $artykuł->Jednostka_miary }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -81,7 +77,7 @@
                                 <div class="mb-5">
                                     <label for="Cena_jednostkowa"
                                         class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
-                                        Cena Jednostkowa'
+                                        Cena Jednostkowa
                                     </label>
                                     <input type="text"  name="Cena_jednostkowa" id="Cena_jednostkowa'" 
                                         class="w-full rounded-md border border-[#abaab6] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
@@ -90,7 +86,7 @@
                                 <div class="mb-5">
                                     <label for="file"
                                         class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
-                                        Wybierz Plik'
+                                        Wybierz Plik
                                     </label>
                                     <input type="file"  name="file" id="file"
                                         class="w-full rounded-md border 

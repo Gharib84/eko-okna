@@ -31,7 +31,12 @@ class MagazynController extends Controller
         //stworzenie nasze magazyn 
 
         $request->validate([
-            'magazyn_nazwa' => ['required', 'string', 'unique:magazyns,magazyn_nazwa']
+            'magazyn_nazwa' => ['required', 'string','regex:/^[a-zA-Z\s]+$/', 'unique:magazyns,magazyn_nazwa']
+        ],[
+            'magazyn_nazwa.required' =>  'magazyn nazwa jest wymagany',
+            'magazyn_nazwa.string' => ' magazyn nazwa musi być ciągiem',
+            'magazyn_nazwa.regex' => 'Nazwa może zawierać tylko litery i spacje',
+            'magazyn_nazwa.unique' => 'Nazwa artykułu jest już zajęta'
         ]);
 
         $magazyn = new Magazyn();

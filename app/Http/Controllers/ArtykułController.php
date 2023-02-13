@@ -66,8 +66,14 @@ class ArtykułController extends Controller
        if ( $this->authorize('create',artykuł::class )) {
        
         $request->validate([
-            'nazwa' => ['required', 'string', 'unique:artykułs,nazwa'],
+            'nazwa' => ['required', 'string','regex:/^[a-zA-Z\s]+$/', 'unique:artykułs,nazwa'],
             'Jednostka_miary' => ['required', 'string']
+        ],[
+            'nazwa.required' => 'Nazwa artykułu jest wymagana',
+            'nazwa.string' => 'Nazwa musi być ciągiem',
+            'nazwa.regex' => 'Nazwa może zawierać tylko litery i spacje',
+            'nazwa.unique' => 'Nazwa artykułu jest już zajęta',
+            'Jednostka_miary' => 'Jednostka miary Jest wymagana'
         ]);
 
         $artykuł = artykuł::create([

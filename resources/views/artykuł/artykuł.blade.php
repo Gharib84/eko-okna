@@ -36,7 +36,7 @@
                                         Nazwa artykułu
                                     </label>
                                     <input type="text" name="nazwa" id="nazwa"
-                                        class="w-full rounded-md border border-[#ade70c] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
+                                        class="w-full rounded-md border border-[#abaab6]  py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
                                 </div>
 
                                 <div class="mb-5">
@@ -45,7 +45,7 @@
                                         Jednostka miary
                                     </label>
                                     <input type="text" name="Jednostka_miary" id="Jednostka_miary"
-                                        class="w-full rounded-md border border-[#ade70c] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
+                                        class="w-full rounded-md border border-[#abaab6] py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
                                 </div>
 
                                 <div>
