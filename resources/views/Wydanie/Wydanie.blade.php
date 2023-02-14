@@ -9,16 +9,16 @@
             <div class="bg-slate-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-none text-center bg-slate-800">
 
-                  
+
                     <div class="flex items-center justify-center p-12">
-                       
+
                         <div class="mx-auto w-full">
-                            <form action="{{route('magazyny.store')}}" method="post">
+                            <form action="{{ route('Wydanie.store')}}" method="post">
                                 @csrf
                                 <h1 class="mb-5 font-bold text-lg text-left text-white">
-                                  
 
-                                    Tworzenie Magazyny
+
+                                    Wydanie artykułu
                                 </h1>
 
                                 @if ($errors->any())
@@ -30,12 +30,27 @@
                                         </ul>
                                     </div>
                                 @endif
+
                                 <div class="mb-5">
-                                    <label for="magagyn_nazwa"
+                                    <label for="nazwa_artykuł"
                                         class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
-                                        Nazwa Magazyny
+                                        Nazwa Artykuł
                                     </label>
-                                    <input type="text" name="magazyn_nazwa" id="magazyn_nazwa"
+                                    <select name="nazwa_artykuł" id="magazyn"
+                                        class="block mt-1 w-full bg-slate-700 text-white">
+                                        <option selected>Wybierz nazwę</option>
+                                        @foreach ($data as $artykuł)
+                                            <option class="white" value="{{ $artykuł->nazwa }}">{{ $artykuł->nazwa }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-5">
+                                    <label for="Ilość_wydana"
+                                        class=" text-left mb-3 block text-base font-medium text-[#83c41c]">
+                                        Ilość wydana
+                                    </label>
+                                    <input type="number" min="1" name="Ilość_wydana" id="Ilość_wydana"
                                         class="w-full rounded-md border border-[#abaab6]  py-3 px-6 text-base font-medium text-[#fefeff] outline-none focus:border-[#6A64F1] focus:shadow-md bg-slate-800" />
                                 </div>
 

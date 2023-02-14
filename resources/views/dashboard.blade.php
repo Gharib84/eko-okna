@@ -43,7 +43,8 @@
                        
                         <a href="{{route('Przyjęcieartykułu.create')}}" class="block text-blue-400">Przyjęcie artykułu </a>
 
-                          
+                        <a href="{{route('Wydanie.create')}}" class="block text-yellow-400">Ilość wydana</a>
+
 
                       
 

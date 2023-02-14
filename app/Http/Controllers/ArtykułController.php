@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\artykuł;
 use Illuminate\View\View;
 use App\Http\Controllers\PrzyjęcieartykułuController;
+use App\Http\Controllers\WydanieController;
 class ArtykułController extends Controller
 {
 
@@ -88,4 +89,13 @@ class ArtykułController extends Controller
         
 
     }
+
+    public function SendToWydanieController(Request $requet)
+    {
+        if ($this->authorize('viewAny',artykuł::class ) === 'uzytkownik') {
+            $data = artykuł::all();
+            return (new WydanieController)->create($requet, $data);
+        }
+    }
+    
 }
