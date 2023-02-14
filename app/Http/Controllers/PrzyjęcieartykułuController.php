@@ -62,7 +62,7 @@ class PrzyjęcieartykułuController extends Controller
             'Jednostka_miary' => ['required'],
             'vat' => ['required', 'numeric'],
             'Cena_jednostkowa' => ['required', 'numeric'],
-            'file' => ['required', 'file', 'mimes:pdf,xml', 'max:4096'],
+            'files.*' => ['required', 'file', 'mimes:pdf,xml', 'max:2048'],
 
 
 
@@ -77,8 +77,9 @@ class PrzyjęcieartykułuController extends Controller
             'vat.numeric' => 'VAT musi być liczbą',
             'Cena_jednostkowa.required' => 'Cena jednostkowa jest wymagana',
             'Cena_jednostkowa.numeric' => 'Cena jednostkowa musi być liczbą',
-            'file.required' => 'plik jest wymagana',
-            'file.file' => 'Plik musi być plikiem'
+            'files.*.required' => 'plik jest wymagana',
+            'files.*.file' => 'Plik musi być plikiem',
+            'files.*.mimes' => 'plik musi pdf lub xml'
         ]);
 
         #stworzyc tutaj
@@ -92,25 +93,44 @@ class PrzyjęcieartykułuController extends Controller
         
       }
 
+      $files = $request->file('files');
+
+      if (!$files || !is_array($files)) {
+          return redirect()->back()->withErrors([
+              'file' => 'Nie wybrano plików'
+          ]);
+      }
       
-       $PrzyjęcieArtykuł = PrzyjęcieArtykuł::create([
-        'nazwa_artykuł' => $request->get('nazwa_artykuł'),
-        'Ilość_przyjęta' => $request->get('Ilość_przyjęta'),
-        'Jednostka_miary' => $request->get('Jednostka_miary'),
-        'vat' => $request->get('vat'),
-        'Cena_jednostkowa' => $request->get('Cena_jednostkowa'),
-        'file' => $request->get('file'),
-        'total' => $request->get('Cena_jednostkowa') + ($request->get('Cena_jednostkowa') * $request->get('vat') / 100)
+      if (count($files) > 4) {
+          return redirect()->back()->withErrors([
+              'file' => 'Możesz przesłać maksymalnie 4 pliki'
+          ]);
+      }
 
-    ]);
+      if ($files || is_array($files)) {
+        foreach($files as $file){
+            $fileName = time().'-'.$file->getClientOriginalName();
+            $path = $file->storeAs('files', $fileName);
+    
+            $PrzyjęcieArtykuł = PrzyjęcieArtykuł::create([
+                'nazwa_artykuł' => $request->get('nazwa_artykuł'),
+                'Ilość_przyjęta' => $request->get('Ilość_przyjęta'),
+                'Jednostka_miary' => $request->get('Jednostka_miary'),
+                'vat' => $request->get('vat'),
+                'Cena_jednostkowa' => $request->get('Cena_jednostkowa'),
+                'file' => $path,
+                'total' => $request->get('Cena_jednostkowa') + ($request->get('Cena_jednostkowa') * $request->get('vat') / 100)
+        
+            ]);
+        
+    
+        };
+        session()->flash('brawo', 'Przyjęcie Artykuł juz  jest Stworzonie');
+        return redirect()->intended('/dashboard');
+   
+      }
 
-
-     session()->flash('brawo', 'Przyjęcie Artykuł juz  jest Stworzonie');
-     return redirect()->intended('/dashboard');
-
-
-
-    }
-
+    
+   }
   
 }
