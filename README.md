@@ -6,8 +6,7 @@ Aby sklonować to repozytorium, wykonaj poniższą komendę w terminalu:
 git clone https://github.com/Gharib84/eko-okna.git
 
 ```
-### Krok 2: Sklonuj repozytorium
-przejdź do folderu projektu.
+### Krok 2:przejdź do folderu projektu.
 ```
 cd eko-okna
 ```
