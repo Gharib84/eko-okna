@@ -107,28 +107,26 @@ class PrzyjęcieartykułuController extends Controller
           ]);
       }
 
-      if ($files || is_array($files)) {
-        foreach($files as $file){
-            $fileName = time().'-'.$file->getClientOriginalName();
-            $path = $file->storeAs('files', $fileName);
-    
-            $PrzyjęcieArtykuł = PrzyjęcieArtykuł::create([
-                'nazwa_artykuł' => $request->get('nazwa_artykuł'),
-                'Ilość_przyjęta' => $request->get('Ilość_przyjęta'),
-                'Jednostka_miary' => $request->get('Jednostka_miary'),
-                'vat' => $request->get('vat'),
-                'Cena_jednostkowa' => $request->get('Cena_jednostkowa'),
-                'file' => $path,
-                'total' => $request->get('Cena_jednostkowa') + ($request->get('Cena_jednostkowa') * $request->get('vat') / 100)
-        
-            ]);
-        
-    
-        };
+
+      $attachments = [];
+      foreach ($files as $file) {
+        $fileName = time().'-'.$file->getClientOriginalName();
+        $path = $file->storeAs('files', $fileName);
+        $attachments[] = $path;
+    }
+
+    $PrzyjęcieArtykuł = PrzyjęcieArtykuł::create([
+        'nazwa_artykuł' => $request->get('nazwa_artykuł'),
+        'Ilość_przyjęta' => $request->get('Ilość_przyjęta'),
+        'Jednostka_miary' => $request->get('Jednostka_miary'),
+        'vat' => $request->get('vat'),
+        'Cena_jednostkowa' => $request->get('Cena_jednostkowa'),
+        'files' => json_encode($attachments),
+        'total' => $request->get('Cena_jednostkowa') + ($request->get('Cena_jednostkowa') * $request->get('vat') / 100)
+    ]);
+
         session()->flash('brawo', 'Przyjęcie Artykuł juz  jest Stworzonie');
         return redirect()->intended('/dashboard');
-   
-      }
 
     
    }

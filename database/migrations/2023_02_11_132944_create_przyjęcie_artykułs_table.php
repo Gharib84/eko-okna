@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('Jednostka_miary', 20);
             $table->decimal('vat', 8, 2);
             $table->decimal('Cena_jednostkowa');
-            $table->string('file', 255)->nullable();
+            $table->string('files', 255)->nullable();
             $table->decimal('total',8,2);
             $table->timestamps();
         });

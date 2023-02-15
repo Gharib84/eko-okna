@@ -15,7 +15,7 @@ class PrzyjęcieArtykuł extends Model
         'Jednostka_miary',
         'vat',
         'Cena_jednostkowa',
-        'file',
+        'files',
         'total'
 
     ];
